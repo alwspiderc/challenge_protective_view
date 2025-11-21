@@ -1,11 +1,11 @@
 import { ThemeProvider } from '@/components/theme-provider';
 
-import Page from './pages/dashboard';
+import Dashboard from './pages/dashboard';
 
 function App() {
 	return (
 		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			<Page />
+			<Dashboard />
 		</ThemeProvider>
 	);
 }
