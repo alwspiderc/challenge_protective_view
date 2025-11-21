@@ -19,7 +19,6 @@ import {
 } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import {
-	IconChevronDown,
 	IconChevronLeft,
 	IconChevronRight,
 	IconChevronsLeft,
@@ -27,9 +26,7 @@ import {
 	IconCircleCheckFilled,
 	IconDotsVertical,
 	IconGripVertical,
-	IconLayoutColumns,
 	IconLoader,
-	IconPlus,
 	IconTrendingUp
 } from '@tabler/icons-react';
 import type {
@@ -75,7 +72,6 @@ import {
 } from '@/components/ui/drawer';
 import {
 	DropdownMenu,
-	DropdownMenuCheckboxItem,
 	DropdownMenuContent,
 	DropdownMenuItem,
 	DropdownMenuSeparator,
@@ -430,45 +426,6 @@ export function DataTable({
 					</TabsTrigger>
 					<TabsTrigger value="focus-documents">Focus Documents</TabsTrigger>
 				</TabsList>
-				<div className="flex items-center gap-2">
-					<DropdownMenu>
-						<DropdownMenuTrigger asChild>
-							<Button variant="outline" size="sm">
-								<IconLayoutColumns />
-								<span className="hidden lg:inline">Customize Columns</span>
-								<span className="lg:hidden">Columns</span>
-								<IconChevronDown />
-							</Button>
-						</DropdownMenuTrigger>
-						<DropdownMenuContent align="end" className="w-56">
-							{table
-								.getAllColumns()
-								.filter(
-									(column) =>
-										typeof column.accessorFn !== 'undefined' &&
-										column.getCanHide()
-								)
-								.map((column) => {
-									return (
-										<DropdownMenuCheckboxItem
-											key={column.id}
-											className="capitalize"
-											checked={column.getIsVisible()}
-											onCheckedChange={(value) =>
-												column.toggleVisibility(!!value)
-											}
-										>
-											{column.id}
-										</DropdownMenuCheckboxItem>
-									);
-								})}
-						</DropdownMenuContent>
-					</DropdownMenu>
-					<Button variant="outline" size="sm">
-						<IconPlus />
-						<span className="hidden lg:inline">Add Section</span>
-					</Button>
-				</div>
 			</div>
 			<TabsContent
 				value="outline"
