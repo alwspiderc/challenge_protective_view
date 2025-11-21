@@ -3,9 +3,21 @@ import { DataTable } from '@/components/data-table';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-import data from '../app/dashboard/data.json';
+import { useEffect, useState } from 'react';
+import { users, type ResponseUser } from '@/api/users';
 
-export default function Page() {
+export default function Dashboard() {
+	const [usersData, setUsersData] = useState<ResponseUser[]>([]);
+
+	useEffect(() => {
+		const fetchUsers = async () => {
+			const data = await users();
+			setUsersData(data);
+		};
+
+		fetchUsers();
+	}, []);
+
 	return (
 		<SidebarProvider
 			style={
@@ -21,7 +33,7 @@ export default function Page() {
 				<div className="flex flex-1 flex-col">
 					<div className="@container/main flex flex-1 flex-col gap-2">
 						<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
-							<DataTable data={data} />
+							<DataTable data={usersData} />
 						</div>
 					</div>
 				</div>
