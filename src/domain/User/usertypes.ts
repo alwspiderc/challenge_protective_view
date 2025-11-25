@@ -1,5 +1,14 @@
 import { z } from 'zod';
 
+export interface UserAPI {
+	id: string;
+	name: string;
+	cpf: string;
+	active: boolean;
+	last_verified_date: string;
+	verify_frequency_in_days: number;
+}
+
 export const userSchema = z.object({
 	id: z.string(),
 	name: z.string(),

@@ -1,14 +1,7 @@
 import * as React from 'react';
-import {
-	IconHelp,
-	IconInnerShadowTop,
-	IconSearch,
-	IconSettings,
-	IconUsers
-} from '@tabler/icons-react';
+import { IconInnerShadowTop, IconUsers } from '@tabler/icons-react';
 
 import { NavMain } from '@/components/nav-main';
-import { NavSecondary } from '@/components/nav-secondary';
 import { NavUser } from '@/components/nav-user';
 import {
 	Sidebar,
@@ -22,8 +15,8 @@ import {
 
 const data = {
 	user: {
-		name: 'shadcn',
-		email: 'm@example.com',
+		name: 'Ester',
+		email: 'alwesterc@gmail.com',
 		avatar: '/avatars/shadcn.jpg'
 	},
 	navMain: [
@@ -31,24 +24,6 @@ const data = {
 			title: 'Usuários',
 			url: '#',
 			icon: IconUsers
-		}
-	],
-
-	navSecondary: [
-		{
-			title: 'Settings',
-			url: '#',
-			icon: IconSettings
-		},
-		{
-			title: 'Get Help',
-			url: '#',
-			icon: IconHelp
-		},
-		{
-			title: 'Search',
-			url: '#',
-			icon: IconSearch
 		}
 	]
 };
@@ -73,7 +48,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 			</SidebarHeader>
 			<SidebarContent>
 				<NavMain items={data.navMain} />
-				<NavSecondary items={data.navSecondary} className="mt-auto" />
 			</SidebarContent>
 			<SidebarFooter>
 				<NavUser user={data.user} />

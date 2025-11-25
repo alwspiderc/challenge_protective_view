@@ -3,20 +3,10 @@ import { DataTable } from '@/components/data-table';
 import { SiteHeader } from '@/components/site-header';
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar';
 
-import { useEffect, useState } from 'react';
-import { users, type ResponseUser } from '@/api/users';
+import { useUserList } from '@/domain/User/usecase/useUserList';
 
 export default function Dashboard() {
-	const [usersData, setUsersData] = useState<ResponseUser[]>([]);
-
-	useEffect(() => {
-		const fetchUsers = async () => {
-			const data = await users();
-			setUsersData(data);
-		};
-
-		fetchUsers();
-	}, []);
+	const { usersData } = useUserList();
 
 	return (
 		<SidebarProvider
