@@ -4,17 +4,26 @@ import { getList } from '../useApi';
 
 export function useUserList() {
 	const [usersData, setUsersData] = useState<UserAPI[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		const fetchUsers = async () => {
-			const data = await getList();
-			setUsersData(data);
-		};
+		async function fetchUsers() {
+			try {
+				setIsLoading(true);
+				const data = await getList();
+				setUsersData(data);
+			} catch (error) {
+				console.error('Error fetching users:', error);
+			} finally {
+				setIsLoading(false);
+			}
+		}
 
 		fetchUsers();
 	}, []);
 
 	return {
-		usersData
+		usersData,
+		isLoading
 	};
 }
