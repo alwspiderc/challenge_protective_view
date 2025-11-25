@@ -7,7 +7,7 @@ import { useUserList } from '@/domain/User/usecase/useUserList';
 import { Spinner } from '@/components/ui/spinner';
 
 export default function Dashboard() {
-	const { usersData, isLoading } = useUserList();
+	const { usersData, isLoading, isError } = useUserList();
 
 	return (
 		<SidebarProvider
@@ -26,6 +26,10 @@ export default function Dashboard() {
 						{isLoading ? (
 							<div className="flex flex-1 items-center justify-center py-20">
 								<Spinner className="size-lg" />
+							</div>
+						) : isError ? (
+							<div className="flex flex-1 items-center justify-center py-20">
+								<p>Erro ao carregar dados dos usuários.</p>
 							</div>
 						) : (
 							<div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
