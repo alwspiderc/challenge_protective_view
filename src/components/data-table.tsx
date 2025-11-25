@@ -1,3 +1,4 @@
+import { useId, useMemo, useState } from 'react';
 import {
 	closestCenter,
 	DndContext,
@@ -62,7 +63,6 @@ import {
 	TableRow
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useId, useMemo, useState } from 'react';
 
 import type { User } from '@/domain/User/usertypes';
 
@@ -228,7 +228,7 @@ export function DataTable({ data }: { data: User[] }) {
 		[filteredData]
 	);
 
-	const filterUsers = [
+	const filterUsers: { id: string; name: string; number: number }[] = [
 		{
 			id: 'all',
 			name: 'Todos',
@@ -236,7 +236,7 @@ export function DataTable({ data }: { data: User[] }) {
 		},
 		{
 			id: 'soon',
-			name: 'Próximas',
+			name: 'Próximas Visitas',
 			number: data.filter((row) => {
 				if (!row.active) return false;
 				const { isSoon } = getVisitInfo(row);
