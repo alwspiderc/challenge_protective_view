@@ -1,12 +1,24 @@
+import { useMemo } from 'react';
 import { Tabs, TabsContent } from '@/components/ui/tabs';
 import type { User } from '@/domain/User/usertypes';
-import { columns } from './data-table-columns';
+import { createColumns } from './data-table-columns';
 import { DataTableContent } from './data-table-content';
 import { DataTableFilters } from './data-table-filters';
 import { DataTablePagination } from './data-table-pagination';
 import { useDataTable } from '@/hooks/useDataTable';
 
-export function DataTable({ data }: { data: User[] }) {
+export function DataTable({
+	data,
+	handleRegisterVisit
+}: {
+	data: User[];
+	handleRegisterVisit: (id: string) => Promise<void>;
+}) {
+	const columns = useMemo(
+		() => createColumns(handleRegisterVisit),
+		[handleRegisterVisit]
+	);
+
 	const {
 		table,
 		activeTab,

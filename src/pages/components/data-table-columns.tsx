@@ -1,11 +1,13 @@
 import type { ColumnDef } from '@tanstack/react-table';
 import { IconCircleCheckFilled, IconLoader } from '@tabler/icons-react';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
 import { getVisitInfo } from '@/lib/dateUtils';
 import type { User } from '@/domain/User/usertypes';
+import { RegisterVisitCell } from './register-visit-cell';
 
-export const columns: ColumnDef<User>[] = [
+export const createColumns = (
+	handleRegisterVisit: (id: string) => Promise<void>
+): ColumnDef<User>[] => [
 	{
 		accessorKey: 'name',
 		header: 'Nome'
@@ -89,13 +91,10 @@ export const columns: ColumnDef<User>[] = [
 		header: 'Visitação',
 		cell: ({ row }) => (
 			<div className="w-40">
-				<Button
-					onClick={() => {
-						console.log('Registrar visitação para', row.original.name);
-					}}
-				>
-					Registrar visita
-				</Button>
+				<RegisterVisitCell
+					user={row.original}
+					onRegisterVisit={handleRegisterVisit}
+				/>
 			</div>
 		)
 	}
