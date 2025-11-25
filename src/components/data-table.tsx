@@ -40,7 +40,6 @@ import {
 	getSortedRowModel,
 	useReactTable
 } from '@tanstack/react-table';
-import { Search } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -64,7 +63,6 @@ import {
 } from '@/components/ui/table';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useId, useMemo, useState } from 'react';
-import { InputGroup, InputGroupAddon, InputGroupInput } from './ui/input-group';
 
 import type { User } from '@/domain/User/usertypes';
 
@@ -288,15 +286,6 @@ export function DataTable({ data }: { data: User[] }) {
 			onValueChange={setActiveTab}
 			className="w-full flex-col justify-start gap-6"
 		>
-			<div className="grid w-full max-w-4xl gap-6 self-center mb-5 mt-5">
-				<InputGroup>
-					<InputGroupInput placeholder="Search..." />
-					<InputGroupAddon>
-						<Search />
-					</InputGroupAddon>
-					<InputGroupAddon align="inline-end">12 results</InputGroupAddon>
-				</InputGroup>
-			</div>
 			<div className="flex flex-col gap-4 px-4 lg:px-6">
 				<div className="flex items-center justify-between">
 					<TabsList className="**:data-[slot=badge]:bg-muted-foreground/30 hidden **:data-[slot=badge]:size-5 **:data-[slot=badge]:rounded-full **:data-[slot=badge]:px-1 @4xl/main:flex">
